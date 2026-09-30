@@ -17,6 +17,30 @@ const META_PATHS = new Set([
   "/favicon.ico",
 ]);
 
+async function readSessionToken(request: NextRequest) {
+  const secret = authSecret();
+  if (!secret) return null;
+
+  const secure = request.nextUrl.protocol === "https:" || Boolean(process.env.VERCEL);
+  // Auth.js v5 on HTTPS uses __Secure-authjs.session-token; getToken needs secureCookie
+  // or it looks for the wrong name and forces a login redirect loop.
+  const token = await getToken({
+    req: request,
+    secret,
+    secureCookie: secure,
+  });
+  if (token) return token;
+
+  // Fallback if cookie name/salt differs between Auth.js builds
+  return getToken({
+    req: request,
+    secret,
+    secureCookie: secure,
+    cookieName: secure ? "__Secure-authjs.session-token" : "authjs.session-token",
+    salt: secure ? "__Secure-authjs.session-token" : "authjs.session-token",
+  });
+}
+
 export async function proxy(request: NextRequest) {
   const { pathname } = request.nextUrl;
 
@@ -28,8 +52,7 @@ export async function proxy(request: NextRequest) {
     const requestHeaders = new Headers(request.headers);
     requestHeaders.set("x-lyne-locale", "fr");
     if (pathname.startsWith("/admin") && !pathname.startsWith("/admin/login")) {
-      const secret = authSecret();
-      const token = secret ? await getToken({ req: request, secret }) : null;
+      const token = await readSessionToken(request);
       if (!token) {
         const url = new URL("/admin/login", request.url);
         url.searchParams.set("callbackUrl", pathname);
