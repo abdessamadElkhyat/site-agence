@@ -1,0 +1,141 @@
+{
+  "nav": {
+    "services": "Services",
+    "work": "Work",
+    "about": "About",
+    "blog": "Journal",
+    "contact": "Contact",
+    "cta": "Let's talk about your project",
+    "open": "Open menu",
+    "close": "Close menu"
+  },
+  "hero": {
+    "eyebrow": "Digital marketing studio · International",
+    "title": "Websites, campaigns and brands that bring in",
+    "emphasis": "clients",
+    "subtitle": "LYNE helps companies and brands become the ones people choose: websites, SEO, advertising and content, with clear follow-up and numbers you can read.",
+    "primary": "Let's talk about your project",
+    "secondary": "Explore the services",
+    "scroll": "Scroll"
+  },
+  "sections": {
+    "workEyebrow": "Selected work",
+    "workTitle": "Concrete projects, not agency mockups.",
+    "workAll": "All work",
+    "servicesEyebrow": "What we do",
+    "servicesTitle": "One studio, eight levers.",
+    "servicesText": "Every engagement starts from a business goal. Website, advertising and content work together.",
+    "methodEyebrow": "Method",
+    "methodTitle": "Four steps, no theatre.",
+    "journalEyebrow": "Journal",
+    "journalTitle": "Guides to decide more clearly.",
+    "journalAll": "Read the journal",
+    "closingTitle": "Tell us what you want to grow.",
+    "closingText": "A 30-minute call is enough to see if we are the right studio. Reply within one business day.",
+    "viewProject": "View project",
+    "read": "Read"
+  },
+  "method": {
+    "1": { "title": "Listen", "text": "Your market, your customers, what blocks you today. We start from facts, not a ready-made offer." },
+    "2": { "title": "Frame", "text": "A short plan: priorities, budget, metrics. You know what will ship, and what will not." },
+    "3": { "title": "Produce", "text": "Design, development, campaigns, content. A tight team, visible checkpoints." },
+    "4": { "title": "Measure", "text": "Traffic, enquiries, sales. We reinforce what works and stop what does not help." }
+  },
+  "footer": {
+    "blurb": "An international digital marketing studio. Websites, acquisition and brands for companies that want to grow anywhere.",
+    "navigate": "Navigate",
+    "services": "Services",
+    "contact": "Contact",
+    "rights": "All rights reserved.",
+    "legal": "Legal notice",
+    "privacy": "Privacy",
+    "cookies": "Cookies",
+    "newsletter": "Studio notes",
+    "newsletterText": "An occasional useful email, without aggressive sequences.",
+    "newsletterPlaceholder": "Your email",
+    "newsletterCta": "Subscribe",
+    "newsletterOk": "Noted. Thank you."
+  },
+  "contact": {
+    "eyebrow": "Contact",
+    "title": "Let's talk about the next step.",
+    "text": "Describe the project, or book a slot. We reply within one business day.",
+    "messageTab": "Write",
+    "bookingTab": "Book a call",
+    "whatsapp": "Message on WhatsApp",
+    "success": "Message received. We will get back to you shortly.",
+    "bookingSuccess": "Request saved. We confirm the slot by email or phone.",
+    "error": "Sending failed. Try again, or email us directly.",
+    "dbError": "The form is ready, but the database is not connected yet."
+  },
+  "form": {
+    "firstName": "First name",
+    "lastName": "Last name",
+    "email": "Email",
+    "phone": "Phone",
+    "company": "Company",
+    "service": "Service needed",
+    "budget": "Budget",
+    "message": "Message",
+    "source": "How did you hear about us?",
+    "type": "Meeting type",
+    "date": "Preferred date",
+    "time": "Preferred time",
+    "send": "Send",
+    "sending": "Sending…",
+    "book": "Request the meeting",
+    "required": "Required field",
+    "invalidEmail": "Invalid email",
+    "select": "Choose"
+  },
+  "about": {
+    "eyebrow": "The studio",
+    "title": "An international digital atelier, run like a serious house.",
+    "text": "LYNE started from a simple idea: businesses deserve a high standard everywhere, with a team that speaks clearly and ships."
+  },
+  "blog": {
+    "eyebrow": "Journal",
+    "title": "Decide with markers, not with promises.",
+    "reading": "min read",
+    "related": "Also read",
+    "relatedTitle": "Keep reading",
+    "toc": "Contents",
+    "ctaTitle": "A web or e-commerce project?",
+    "ctaText": "We clarify the right format, the journey and the priorities before building.",
+    "ctaButton": "Let's talk about your project",
+    "back": "Back to the journal",
+    "empty": "No published articles yet."
+  },
+  "work": {
+    "eyebrow": "Work",
+    "title": "What we have already shipped.",
+    "empty": "No project in this category.",
+    "client": "Client",
+    "stack": "Stack",
+    "goals": "Goals",
+    "results": "Results",
+    "visit": "Visit the site"
+  },
+  "services": {
+    "eyebrow": "Services",
+    "title": "Choose the lever, not a catalogue.",
+    "problem": "The issue",
+    "solution": "Our answer",
+    "benefits": "What you gain",
+    "process": "Process",
+    "tools": "Tools",
+    "faq": "FAQ",
+    "related": "Other levers",
+    "cta": "Discuss this topic"
+  },
+  "cookies": {
+    "text": "We measure traffic only if you accept. Essential cookies keep your choice.",
+    "accept": "Accept",
+    "refuse": "Refuse",
+    "more": "Learn more"
+  },
+  "common": {
+    "home": "Home",
+    "demo": "Demo identity — replace contact details in configuration."
+  }
+}

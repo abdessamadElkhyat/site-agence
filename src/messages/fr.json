@@ -1,0 +1,141 @@
+{
+  "nav": {
+    "services": "Services",
+    "work": "Réalisations",
+    "about": "À propos",
+    "blog": "Journal",
+    "contact": "Contact",
+    "cta": "Parlons de votre projet",
+    "open": "Ouvrir le menu",
+    "close": "Fermer le menu"
+  },
+  "hero": {
+    "eyebrow": "Studio marketing digital · International",
+    "title": "Des sites, des campagnes et des marques qui font entrer des",
+    "emphasis": "clients",
+    "subtitle": "LYNE accompagne les entreprises et les marques qui veulent être choisies : création web, SEO, publicité et contenus, avec un suivi clair et des résultats mesurables.",
+    "primary": "Parlons de votre projet",
+    "secondary": "Découvrir nos services",
+    "scroll": "Défiler"
+  },
+  "sections": {
+    "workEyebrow": "Travaux choisis",
+    "workTitle": "Des projets concrets, pas des maquettes d'agence.",
+    "workAll": "Toutes les réalisations",
+    "servicesEyebrow": "Ce que nous faisons",
+    "servicesTitle": "Un studio, huit leviers.",
+    "servicesText": "Chaque mission part d'un objectif commercial. Le site, la publicité et le contenu travaillent ensemble.",
+    "methodEyebrow": "Méthode",
+    "methodTitle": "Quatre temps, sans théâtre.",
+    "journalEyebrow": "Journal",
+    "journalTitle": "Des guides pour décider plus clairement.",
+    "journalAll": "Lire le journal",
+    "closingTitle": "Dites-nous ce que vous voulez faire grandir.",
+    "closingText": "Un appel de 30 minutes suffit pour voir si nous sommes le bon studio. Réponse sous 24 heures ouvrées.",
+    "viewProject": "Voir le projet",
+    "read": "Lire"
+  },
+  "method": {
+    "1": { "title": "Écouter", "text": "Votre marché, vos clients, ce qui bloque aujourd'hui. Nous commençons par les faits, pas par une offre toute faite." },
+    "2": { "title": "Cadrer", "text": "Un plan court : priorités, budget, indicateurs. Vous savez ce qui sera livré, et ce qui ne l'est pas." },
+    "3": { "title": "Produire", "text": "Design, développement, campagnes, contenus. Une équipe resserrée, des points d'étape visibles." },
+    "4": { "title": "Mesurer", "text": "Trafic, demandes, ventes. Nous ajustons ce qui fonctionne et nous arrêtons ce qui ne sert pas." }
+  },
+  "footer": {
+    "blurb": "Studio de marketing digital international. Sites, acquisition et marques pour les entreprises qui veulent grandir partout.",
+    "navigate": "Navigation",
+    "services": "Services",
+    "contact": "Contact",
+    "rights": "Tous droits réservés.",
+    "legal": "Mentions légales",
+    "privacy": "Confidentialité",
+    "cookies": "Cookies",
+    "newsletter": "Notes de studio",
+    "newsletterText": "Un email occasionnel, utile, sans séquence agressive.",
+    "newsletterPlaceholder": "Votre email",
+    "newsletterCta": "S'inscrire",
+    "newsletterOk": "C'est noté. Merci."
+  },
+  "contact": {
+    "eyebrow": "Contact",
+    "title": "Parlons du prochain pas.",
+    "text": "Décrivez le projet, ou réservez un créneau. Nous répondons sous 24 heures ouvrées.",
+    "messageTab": "Écrire",
+    "bookingTab": "Réserver un appel",
+    "whatsapp": "Écrire sur WhatsApp",
+    "success": "Message reçu. Nous revenons vers vous très vite.",
+    "bookingSuccess": "Demande enregistrée. Nous confirmons le créneau par email ou téléphone.",
+    "error": "L'envoi a échoué. Réessayez, ou écrivez-nous directement.",
+    "dbError": "Le formulaire est prêt, mais la base de données n'est pas encore connectée."
+  },
+  "form": {
+    "firstName": "Prénom",
+    "lastName": "Nom",
+    "email": "Email",
+    "phone": "Téléphone",
+    "company": "Entreprise",
+    "service": "Service recherché",
+    "budget": "Budget",
+    "message": "Message",
+    "source": "Comment nous avez-vous connus ?",
+    "type": "Type de rendez-vous",
+    "date": "Date souhaitée",
+    "time": "Heure souhaitée",
+    "send": "Envoyer",
+    "sending": "Envoi…",
+    "book": "Demander le rendez-vous",
+    "required": "Champ requis",
+    "invalidEmail": "Email invalide",
+    "select": "Choisir"
+  },
+  "about": {
+    "eyebrow": "Le studio",
+    "title": "Un atelier digital international, tenu comme une maison sérieuse.",
+    "text": "LYNE est née d'une idée simple : les entreprises méritent le même niveau d'exigence partout, avec une équipe qui parle clairement et livre."
+  },
+  "blog": {
+    "eyebrow": "Journal",
+    "title": "Décider avec des repères, pas avec des promesses.",
+    "reading": "min de lecture",
+    "related": "À lire aussi",
+    "relatedTitle": "Continuer la lecture",
+    "toc": "Sommaire",
+    "ctaTitle": "Un projet web ou e-commerce ?",
+    "ctaText": "On clarifie le bon format, le parcours et les priorités avant de construire.",
+    "ctaButton": "Parlons de votre projet",
+    "back": "Retour au journal",
+    "empty": "Aucun article publié pour le moment."
+  },
+  "work": {
+    "eyebrow": "Réalisations",
+    "title": "Ce que nous avons déjà mis en ligne.",
+    "empty": "Aucun projet dans cette catégorie.",
+    "client": "Client",
+    "stack": "Techniques",
+    "goals": "Objectifs",
+    "results": "Résultats",
+    "visit": "Voir le site"
+  },
+  "services": {
+    "eyebrow": "Services",
+    "title": "Choisissez le levier, pas un catalogue.",
+    "problem": "Le sujet",
+    "solution": "Notre réponse",
+    "benefits": "Ce que vous y gagnez",
+    "process": "Déroulé",
+    "tools": "Outils",
+    "faq": "Questions fréquentes",
+    "related": "Autres leviers",
+    "cta": "Discuter de ce sujet"
+  },
+  "cookies": {
+    "text": "Nous mesurons la fréquentation uniquement si vous l'acceptez. Les cookies essentiels gardent votre choix.",
+    "accept": "Accepter",
+    "refuse": "Refuser",
+    "more": "En savoir plus"
+  },
+  "common": {
+    "home": "Accueil",
+    "demo": "Identité de démonstration — coordonnées à remplacer dans la configuration."
+  }
+}
