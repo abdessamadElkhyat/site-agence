@@ -24,7 +24,7 @@ export default async function Page({ params }: { params: Promise<{ locale: strin
         <Container className="prose-article max-w-3xl">
           <p>Les formulaires de contact, de rendez-vous et d'inscription collectent les informations que vous saisissez : identité, coordonnées, entreprise et message. Elles servent uniquement à répondre à votre demande.</p>
           <p>Base : l'intérêt de traiter une demande que vous avez envoyée. Durée : le temps du suivi commercial, puis archivage limité si une obligation l'exige.</p>
-          <p>Destinataire : l'équipe de {site.legalName}. Les données ne sont pas vendues. L'hébergement de la base MySQL dépend de la configuration de production.</p>
+          <p>Destinataire : l'équipe de {site.legalName}. Les données ne sont pas vendues. L'hébergement de la base (Postgres / Supabase) dépend de la configuration de production.</p>
           <p>La mesure d'audience ne se charge qu'après votre accord, via le bandeau cookies. Vous pouvez écrire à {site.email} pour accéder à vos données ou demander leur suppression.</p>
           <p>Ce texte est un cadre de départ. Faites-le relire avant la mise en ligne, notamment si vous ajoutez Google Analytics, Meta Pixel ou une newsletter automatisée.</p>
         </Container>

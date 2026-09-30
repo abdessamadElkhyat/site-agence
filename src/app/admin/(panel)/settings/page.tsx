@@ -14,7 +14,7 @@ export default async function SettingsPage() {
       />
       <AdminCard className="max-w-2xl p-6">
         <div className="mb-4">
-          <AdminBadge tone={db ? "success" : "danger"}>{db ? "MySQL connectée" : "Base absente"}</AdminBadge>
+          <AdminBadge tone={db ? "success" : "danger"}>{db ? "Postgres connectée" : "Base absente"}</AdminBadge>
         </div>
         <p className="text-sm leading-6 text-paper-muted">
           L&apos;identité affichée sur le site public se change dans <code className="rounded bg-paper px-1.5 py-0.5 text-paper-ink">src/config/site.ts</code> :
