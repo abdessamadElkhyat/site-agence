@@ -3,6 +3,9 @@ import Credentials from "next-auth/providers/credentials";
 import { compare } from "bcryptjs";
 import { z } from "zod";
 import { getPrisma } from "@/lib/db";
+import { authSecret, ensureDatabaseEnv } from "@/lib/env";
+
+ensureDatabaseEnv();
 
 const credentialsSchema = z.object({
   email: z.string().email(),
@@ -11,6 +14,7 @@ const credentialsSchema = z.object({
 
 export const { handlers, auth, signIn, signOut } = NextAuth({
   trustHost: true,
+  secret: authSecret(),
   session: { strategy: "jwt" },
   pages: { signIn: "/admin/login" },
   providers: [

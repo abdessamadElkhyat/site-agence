@@ -18,7 +18,13 @@ async function login(formData: FormData) {
       redirectTo: "/admin",
     });
   } catch (error) {
-    if (error instanceof AuthError) redirect("/admin/login?error=1");
+    const isAuthError =
+      error instanceof AuthError ||
+      (typeof error === "object" &&
+        error !== null &&
+        "type" in error &&
+        (error as { type?: string }).type === "CredentialsSignin");
+    if (isAuthError) redirect("/admin/login?error=1");
     throw error;
   }
 }

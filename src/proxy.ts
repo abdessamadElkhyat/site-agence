@@ -1,6 +1,7 @@
 import createMiddleware from "next-intl/middleware";
 import { NextResponse, type NextRequest } from "next/server";
 import { getToken } from "next-auth/jwt";
+import { authSecret } from "@/lib/env";
 import { routing } from "@/i18n/routing";
 
 const handleI18n = createMiddleware(routing);
@@ -27,7 +28,8 @@ export async function proxy(request: NextRequest) {
     const requestHeaders = new Headers(request.headers);
     requestHeaders.set("x-lyne-locale", "fr");
     if (pathname.startsWith("/admin") && !pathname.startsWith("/admin/login")) {
-      const token = await getToken({ req: request, secret: process.env.AUTH_SECRET });
+      const secret = authSecret();
+      const token = secret ? await getToken({ req: request, secret }) : null;
       if (!token) {
         const url = new URL("/admin/login", request.url);
         url.searchParams.set("callbackUrl", pathname);
