@@ -85,6 +85,8 @@
     "sending": "Sending…",
     "book": "Request the meeting",
     "required": "Required field",
+    "mandatory": "required",
+    "optional": "optional",
     "invalidEmail": "Invalid email",
     "select": "Choose"
   },

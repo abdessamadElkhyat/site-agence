@@ -40,10 +40,21 @@ export function ContactPanel({ services }: { services: string[] }) {
   );
 }
 
-function Field({ label, error, children }: { label: string; error?: string; children: React.ReactNode }) {
+function Field({ label, required = false, error, children }: { label: string; required?: boolean; error?: string; children: React.ReactNode }) {
+  const t = useTranslations("form");
   return (
     <label className="block text-sm">
-      <span>{label}</span>
+      <span>
+        {label}
+        {required ? (
+          <>
+            <span aria-hidden="true"> *</span>
+            <span className="sr-only"> ({t("mandatory")})</span>
+          </>
+        ) : (
+          <span className="text-paper-muted"> ({t("optional")})</span>
+        )}
+      </span>
       <div className="mt-1">{children}</div>
       {error ? <span className="mt-1 block text-xs text-red-700">{error}</span> : null}
     </label>
@@ -78,9 +89,9 @@ function MessageForm({ services, locale }: { services: string[]; locale: Locale 
 
   return (
     <form onSubmit={form.handleSubmit(onSubmit)} className="grid gap-4 md:grid-cols-2" noValidate>
-      <Field label={t("form.firstName")} error={err("firstName")}><input className={inputClass} {...form.register("firstName")} /></Field>
-      <Field label={t("form.lastName")} error={err("lastName")}><input className={inputClass} {...form.register("lastName")} /></Field>
-      <Field label={t("form.email")} error={form.formState.errors.email ? t("form.invalidEmail") : undefined}><input type="email" className={inputClass} {...form.register("email")} /></Field>
+      <Field label={t("form.firstName")} required error={err("firstName")}><input className={inputClass} {...form.register("firstName")} /></Field>
+      <Field label={t("form.lastName")} required error={err("lastName")}><input className={inputClass} {...form.register("lastName")} /></Field>
+      <Field label={t("form.email")} required error={form.formState.errors.email ? t("form.invalidEmail") : undefined}><input type="email" className={inputClass} {...form.register("email")} /></Field>
       <Field label={t("form.phone")}><input className={inputClass} {...form.register("phone")} /></Field>
       <Field label={t("form.company")}><input className={inputClass} {...form.register("company")} /></Field>
       <Field label={t("form.service")}>
@@ -97,7 +108,7 @@ function MessageForm({ services, locale }: { services: string[]; locale: Locale 
         </select>
       </Field>
       <div className="md:col-span-2">
-        <Field label={t("form.message")} error={err("message")}><textarea rows={5} className={`${inputClass} h-auto py-2`} {...form.register("message")} /></Field>
+        <Field label={t("form.message")} required error={err("message")}><textarea rows={5} className={`${inputClass} h-auto py-2`} {...form.register("message")} /></Field>
       </div>
       <div className="md:col-span-2">
         <button disabled={form.formState.isSubmitting} className="rounded-full bg-ink px-5 py-3 text-sm text-ivory disabled:opacity-60">
@@ -133,19 +144,19 @@ function BookingForm({ locale }: { locale: Locale }) {
 
   return (
     <form onSubmit={form.handleSubmit(onSubmit)} className="grid gap-4 md:grid-cols-2" noValidate>
-      <Field label={t("form.firstName")} error={err("firstName")}><input className={inputClass} {...form.register("firstName")} /></Field>
-      <Field label={t("form.lastName")} error={err("lastName")}><input className={inputClass} {...form.register("lastName")} /></Field>
-      <Field label={t("form.email")} error={form.formState.errors.email ? t("form.invalidEmail") : undefined}><input type="email" className={inputClass} {...form.register("email")} /></Field>
-      <Field label={t("form.phone")} error={err("phone")}><input className={inputClass} {...form.register("phone")} /></Field>
+      <Field label={t("form.firstName")} required error={err("firstName")}><input className={inputClass} {...form.register("firstName")} /></Field>
+      <Field label={t("form.lastName")} required error={err("lastName")}><input className={inputClass} {...form.register("lastName")} /></Field>
+      <Field label={t("form.email")} required error={form.formState.errors.email ? t("form.invalidEmail") : undefined}><input type="email" className={inputClass} {...form.register("email")} /></Field>
+      <Field label={t("form.phone")}><input className={inputClass} {...form.register("phone")} /></Field>
       <Field label={t("form.company")}><input className={inputClass} {...form.register("company")} /></Field>
-      <Field label={t("form.type")} error={err("type")}>
+      <Field label={t("form.type")} required error={err("type")}>
         <select className={inputClass} {...form.register("type")}>
           <option value="">{t("form.select")}</option>
           {types[locale].map((item) => <option key={item}>{item}</option>)}
         </select>
       </Field>
-      <Field label={t("form.date")} error={err("date")}><input type="date" className={inputClass} {...form.register("date")} /></Field>
-      <Field label={t("form.time")}>
+      <Field label={t("form.date")} required error={err("date")}><input type="date" className={inputClass} {...form.register("date")} /></Field>
+      <Field label={t("form.time")} required>
         <select className={inputClass} {...form.register("time")}>{hours.map((hour) => <option key={hour}>{hour}</option>)}</select>
       </Field>
       <div className="md:col-span-2">

@@ -19,7 +19,7 @@ export async function POST(request: Request) {
       firstName: data.firstName,
       lastName: data.lastName,
       email: data.email,
-      phone: data.phone,
+      phone: data.phone || "",
       company: data.company || null,
       type: data.type,
       date: new Date(`${data.date}T00:00:00`),

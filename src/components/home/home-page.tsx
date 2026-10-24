@@ -73,15 +73,19 @@ export async function HomePage({
       </div>
 
       <section className="bg-ink py-20 text-ivory md:py-28">
+        <div className="sticky top-16 z-40 bg-ink md:top-20">
+          <Container className="py-4">
+            <Reveal>
+              <p className="text-xs tracking-[0.2em] text-brass uppercase">{s("workEyebrow")}</p>
+              <div className="mt-4 flex flex-col justify-between gap-6 md:flex-row md:items-end">
+                <h2 className="max-w-xl font-serif text-4xl leading-none md:text-6xl">{s("workTitle")}</h2>
+                <Link href="/realisations" className="text-sm text-accent">{s("workAll")}</Link>
+              </div>
+            </Reveal>
+          </Container>
+        </div>
         <Container>
-          <Reveal>
-            <p className="text-xs tracking-[0.2em] text-brass uppercase">{s("workEyebrow")}</p>
-            <div className="mt-4 flex flex-col justify-between gap-6 md:flex-row md:items-end">
-              <h2 className="max-w-xl font-serif text-4xl leading-none md:text-6xl">{s("workTitle")}</h2>
-              <Link href="/realisations" className="text-sm text-accent">{s("workAll")}</Link>
-            </div>
-          </Reveal>
-          <div className="mt-12 grid gap-6 md:grid-cols-2">
+          <div className="mt-8 grid gap-6 md:grid-cols-2">
             {featured.map((project, index) => (
               <Link key={project.slug} href={`/realisations/${project.slug}`} className={index === 0 ? "md:col-span-2" : ""}>
                 <article className="group">
@@ -101,21 +105,31 @@ export async function HomePage({
       </section>
 
       <section className="bg-paper py-20 text-paper-ink md:py-28">
+        <div className="sticky top-16 z-40 bg-paper md:top-20">
+          <Container className="py-4">
+            <div className="max-w-xl">
+              <p className="text-xs tracking-[0.2em] text-paper-muted uppercase">{s("servicesEyebrow")}</p>
+              <h2 className="mt-3 font-serif text-4xl md:text-6xl">{s("servicesTitle")}</h2>
+              <p className="mt-4 text-paper-muted">{s("servicesText")}</p>
+            </div>
+          </Container>
+        </div>
         <Container>
-          <div className="mb-12 max-w-xl">
-            <p className="text-xs tracking-[0.2em] text-paper-muted uppercase">{s("servicesEyebrow")}</p>
-            <h2 className="mt-3 font-serif text-4xl md:text-6xl">{s("servicesTitle")}</h2>
-            <p className="mt-4 text-paper-muted">{s("servicesText")}</p>
+          <div className="mt-8">
+            <ServiceIndex services={services} />
           </div>
-          <ServiceIndex services={services} />
         </Container>
       </section>
 
       <section className="bg-ink py-20 text-ivory md:py-28">
+        <div className="sticky top-16 z-40 bg-ink md:top-20">
+          <Container className="py-4">
+            <p className="text-xs tracking-[0.2em] text-brass uppercase">{s("methodEyebrow")}</p>
+            <h2 className="mt-3 max-w-4xl font-serif text-4xl leading-none md:text-6xl">{s("methodTitle")}</h2>
+          </Container>
+        </div>
         <Container>
-          <p className="text-xs tracking-[0.2em] text-brass uppercase">{s("methodEyebrow")}</p>
-          <h2 className="mt-3 max-w-lg font-serif text-4xl md:text-6xl">{s("methodTitle")}</h2>
-          <ol className="mt-12 grid gap-px bg-line md:grid-cols-4">
+          <ol className="mt-8 grid gap-px bg-line md:grid-cols-4">
             {(["1", "2", "3", "4"] as const).map((step) => (
               <li key={step} className="bg-ink p-6 md:min-h-64">
                 <span className="font-serif text-4xl text-accent">0{step}</span>
@@ -143,15 +157,19 @@ export async function HomePage({
       ) : null}
 
       {articles.length > 0 ? <section className="bg-paper py-20 text-paper-ink md:py-28">
-        <Container>
-          <div className="flex items-end justify-between gap-4">
-            <div>
-              <p className="text-xs tracking-[0.2em] text-paper-muted uppercase">{s("journalEyebrow")}</p>
-              <h2 className="mt-3 font-serif text-4xl md:text-6xl">{s("journalTitle")}</h2>
+        <div className="sticky top-16 z-40 bg-paper md:top-20">
+          <Container className="py-4">
+            <div className="flex items-end justify-between gap-4">
+              <div>
+                <p className="text-xs tracking-[0.2em] text-paper-muted uppercase">{s("journalEyebrow")}</p>
+                <h2 className="mt-3 font-serif text-4xl md:text-6xl">{s("journalTitle")}</h2>
+              </div>
+              <Link href="/blog" className="text-sm underline underline-offset-4">{s("journalAll")}</Link>
             </div>
-            <Link href="/blog" className="text-sm underline underline-offset-4">{s("journalAll")}</Link>
-          </div>
-          <div className="mt-12 grid gap-8 md:grid-cols-3">
+          </Container>
+        </div>
+        <Container>
+          <div className="mt-8 grid gap-8 md:grid-cols-3">
             {articles.slice(0, 3).map((article) => (
               <Link key={article.slug} href={`/blog/${article.slug}`} className="group">
                 <div className="relative aspect-[4/3] overflow-hidden bg-ink">

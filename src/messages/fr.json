@@ -85,6 +85,8 @@
     "sending": "Envoi…",
     "book": "Demander le rendez-vous",
     "required": "Champ requis",
+    "mandatory": "obligatoire",
+    "optional": "optionnel",
     "invalidEmail": "Email invalide",
     "select": "Choisir"
   },
