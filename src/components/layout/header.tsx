@@ -77,7 +77,7 @@ export function Header() {
         <div className="hidden items-center gap-5 lg:flex">
           <LocaleSwitch locale={locale} onChange={(next) => router.replace(pathname, { locale: next })} />
           <Link
-            href="/contact"
+            href="/contact?devis=1"
             className="rounded-full bg-accent px-4 py-2 text-sm font-medium text-accent-ink transition-transform hover:-translate-y-0.5"
           >
             {t("cta")}
@@ -118,7 +118,7 @@ export function Header() {
           <LocaleSwitch locale={locale} prominent onChange={(next) => router.replace(pathname, { locale: next })} />
         </div>
         <Link
-          href="/contact"
+          href="/contact?devis=1"
           className="mt-6 flex h-12 items-center justify-center rounded-full bg-accent text-sm font-medium text-accent-ink"
         >
           {t("cta")}

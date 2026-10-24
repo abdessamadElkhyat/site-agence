@@ -1,6 +1,7 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { useSearchParams } from "next/navigation";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useLocale, useTranslations } from "next-intl";
@@ -53,8 +54,14 @@ const inputClass = "h-11 w-full border border-paper-ink/15 bg-white px-3 outline
 
 function MessageForm({ services, locale }: { services: string[]; locale: Locale }) {
   const t = useTranslations();
+  const quote = t("nav.cta");
+  const requested = useSearchParams().get("devis") === "1";
   const [status, setStatus] = useState<"idle" | "ok" | "error" | "db">("idle");
-  const form = useForm<ContactValues>({ resolver: zodResolver(contactSchema), defaultValues: { firstName: "", lastName: "", email: "", phone: "", company: "", service: "", budget: "", message: "", source: "" } });
+  const form = useForm<ContactValues>({ resolver: zodResolver(contactSchema), defaultValues: { firstName: "", lastName: "", email: "", phone: "", company: "", service: requested ? quote : "", budget: "", message: "", source: "" } });
+
+  useEffect(() => {
+    if (requested) form.setValue("service", quote);
+  }, [requested, quote, form]);
 
   async function onSubmit(values: ContactValues) {
     setStatus("idle");
@@ -79,6 +86,7 @@ function MessageForm({ services, locale }: { services: string[]; locale: Locale 
       <Field label={t("form.service")}>
         <select className={inputClass} {...form.register("service")}>
           <option value="">{t("form.select")}</option>
+          <option value={quote}>{quote}</option>
           {services.map((service) => <option key={service}>{service}</option>)}
         </select>
       </Field>

@@ -1,3 +1,4 @@
+import { Suspense } from "react";
 import { hasLocale } from "next-intl";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import { notFound } from "next/navigation";
@@ -42,7 +43,9 @@ export default async function ContactPage({ params }: { params: Promise<{ locale
               {t("whatsapp")}
             </a>
           </aside>
-          <ContactPanel services={services.map((service) => service.name)} />
+          <Suspense>
+            <ContactPanel services={services.map((service) => service.name)} />
+          </Suspense>
         </Container>
       </section>
     </>
