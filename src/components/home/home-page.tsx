@@ -20,7 +20,7 @@ export async function HomePage({
   services: Service[];
   projects: Project[];
   articles: { slug: string; title: string; category: string; cover: string }[];
-  testimonial: Testimonial;
+  testimonial: Testimonial | null;
 }) {
   const t = await getTranslations("hero");
   const s = await getTranslations("sections");
@@ -38,7 +38,7 @@ export async function HomePage({
         <Container className="relative grid min-h-[calc(100svh-8rem)] content-end pb-10">
           <p className="text-xs tracking-[0.22em] text-brass uppercase">{t("eyebrow")}</p>
           <h1 className="mt-5 max-w-5xl font-serif text-[clamp(2.7rem,7.4vw,6.6rem)] leading-[0.92] tracking-[-0.03em]">
-            {t("title")} <em className="text-accent not-italic">{t("emphasis")}</em>.
+            {t("title")} <em className="text-accent not-italic">{t("emphasis")}</em>
           </h1>
           <div className="mt-8 grid items-end gap-8 md:grid-cols-[1.2fr_0.8fr]">
             <p className="max-w-xl text-base leading-7 text-ivory/75 md:text-lg">{t("subtitle")}</p>
@@ -54,7 +54,7 @@ export async function HomePage({
           <div className="mt-12 grid grid-cols-3 gap-3 md:gap-5">
             {featured.map((project) => (
               <Link key={project.slug} href={`/realisations/${project.slug}`} className="group relative aspect-[4/5] overflow-hidden bg-ink-soft md:aspect-[16/10]">
-                <Image src={project.cover} alt={project.title} fill className="object-cover transition duration-700 group-hover:scale-105" sizes="(min-width: 768px) 30vw, 33vw" />
+                <Image src={project.cover} alt="" fill className="object-cover transition duration-700 group-hover:scale-105" sizes="(min-width: 768px) 30vw, 33vw" />
                 <span className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-ink/80 to-transparent p-3 text-sm">{project.title}</span>
               </Link>
             ))}
@@ -129,18 +129,20 @@ export async function HomePage({
 
       <StatsBand />
 
-      <section className="bg-ink py-24 text-ivory">
-        <Container>
-          <blockquote>
-            <p className="max-w-4xl font-serif text-3xl leading-tight md:text-5xl">“{testimonial.quote}”</p>
-            <footer className="mt-8 text-sm text-brass">
-              {testimonial.name} — {testimonial.role}, {testimonial.company}
-            </footer>
-          </blockquote>
-        </Container>
-      </section>
+      {testimonial ? (
+        <section className="bg-ink py-24 text-ivory">
+          <Container>
+            <blockquote>
+              <p className="max-w-4xl font-serif text-3xl leading-tight md:text-5xl">“{testimonial.quote}”</p>
+              <footer className="mt-8 text-sm text-brass">
+                {testimonial.name} — {testimonial.role}, {testimonial.company}
+              </footer>
+            </blockquote>
+          </Container>
+        </section>
+      ) : null}
 
-      <section className="bg-paper py-20 text-paper-ink md:py-28">
+      {articles.length > 0 ? <section className="bg-paper py-20 text-paper-ink md:py-28">
         <Container>
           <div className="flex items-end justify-between gap-4">
             <div>
@@ -161,7 +163,7 @@ export async function HomePage({
             ))}
           </div>
         </Container>
-      </section>
+      </section> : null}
 
       <section className="bg-accent text-accent-ink">
         <Container className="grid gap-8 py-20 md:grid-cols-[1.4fr_0.6fr] md:items-end md:py-28">

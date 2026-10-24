@@ -1,5 +1,5 @@
 import { hasLocale } from "next-intl";
-import { setRequestLocale } from "next-intl/server";
+import { getTranslations, setRequestLocale } from "next-intl/server";
 import { notFound } from "next/navigation";
 import { PageHero } from "@/components/shared/page-hero";
 import { Container } from "@/components/ui/container";
@@ -10,7 +10,13 @@ import { pageMetadata } from "@/lib/seo";
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params;
   const safe = (hasLocale(routing.locales, locale) ? locale : "fr") as Locale;
-  return pageMetadata({ locale: safe, path: "/politique-confidentialite", title: "Politique de confidentialité", description: "Comment LYNE traite les données envoyées via le site." });
+  const meta = await getTranslations({ locale: safe, namespace: "meta" });
+  return pageMetadata({
+    locale: safe,
+    path: "/politique-confidentialite",
+    title: meta("privacy"),
+    description: safe === "en" ? "How Agence Mark handles data sent through the site." : "Comment Agence Mark traite les données envoyées via le site.",
+  });
 }
 
 export default async function Page({ params }: { params: Promise<{ locale: string }> }) {

@@ -11,6 +11,10 @@ import type { Project } from "@/types/content";
 export function ProjectGrid({ projects, locale, empty }: { projects: Project[]; locale: Locale; empty: string }) {
   const [filter, setFilter] = useState("all");
   const reduce = useReducedMotion();
+  const categories = useMemo(
+    () => projectCategories.filter((category) => category.id === "all" || projects.some((project) => project.category === category.id)),
+    [projects],
+  );
   const visible = useMemo(
     () => (filter === "all" ? projects : projects.filter((project) => project.category === filter)),
     [filter, projects],
@@ -19,7 +23,7 @@ export function ProjectGrid({ projects, locale, empty }: { projects: Project[]; 
   return (
     <div>
       <div className="flex flex-wrap gap-2">
-        {projectCategories.map((category) => (
+        {categories.map((category) => (
           <button
             key={category.id}
             type="button"

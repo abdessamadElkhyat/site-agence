@@ -13,8 +13,9 @@ import { formatDate } from "@/lib/utils";
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params;
   const safe = (hasLocale(routing.locales, locale) ? locale : "fr") as Locale;
+  const nav = await getTranslations({ locale: safe, namespace: "nav" });
   const t = await getTranslations({ locale: safe, namespace: "blog" });
-  return pageMetadata({ locale: safe, path: "/blog", title: t("title"), description: t("title") });
+  return pageMetadata({ locale: safe, path: "/blog", title: nav("blog"), description: t("title") });
 }
 
 export default async function BlogPage({ params }: { params: Promise<{ locale: string }> }) {
@@ -33,8 +34,8 @@ export default async function BlogPage({ params }: { params: Promise<{ locale: s
           {articles.length === 0 ? <p>{t("empty")}</p> : null}
 
           {featured ? (
-            <Link href={`/blog/${featured.slug}`} className="group grid gap-8 border-b border-paper-ink/10 pb-12 lg:grid-cols-[1.2fr_0.8fr] lg:items-end">
-              <div className="relative aspect-[16/10] overflow-hidden bg-ink lg:aspect-[16/11]">
+            <Link href={`/blog/${featured.slug}`} className="group grid items-stretch gap-8 border-b border-paper-ink/10 pb-12 lg:grid-cols-2 lg:gap-14">
+              <div className="relative aspect-[16/9] overflow-hidden bg-ink lg:aspect-auto lg:min-h-[280px]">
                 {featured.cover ? (
                   <Image
                     src={featured.cover}
@@ -42,16 +43,16 @@ export default async function BlogPage({ params }: { params: Promise<{ locale: s
                     fill
                     priority
                     className="object-cover transition duration-700 group-hover:scale-[1.03]"
-                    sizes="(min-width: 1024px) 55vw, 100vw"
+                    sizes="(min-width: 1024px) 42vw, 100vw"
                   />
                 ) : null}
               </div>
-              <div>
+              <div className="flex flex-col justify-center lg:py-6">
                 <p className="text-xs tracking-[0.16em] uppercase text-paper-muted">
                   {featured.category} · {formatDate(featured.publishedAt, locale)} · {featured.readingMinutes} {t("reading")}
                 </p>
-                <h2 className="mt-3 font-serif text-4xl leading-tight md:text-5xl">{featured.title}</h2>
-                <p className="mt-4 max-w-xl text-paper-muted">{featured.excerpt}</p>
+                <h2 className="mt-4 font-serif text-4xl leading-[1.05] md:text-5xl lg:text-[3.4rem]">{featured.title}</h2>
+                <p className="mt-5 max-w-lg text-base leading-7 text-paper-muted">{featured.excerpt}</p>
               </div>
             </Link>
           ) : null}

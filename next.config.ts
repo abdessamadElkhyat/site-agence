@@ -19,12 +19,18 @@ const slugRedirects: Array<{ source: string; destination: string }> = [
     source: "/blog/attirer-plus-de-clients-grace-au-digital",
     destination: "/blog/attirer-clients-digital",
   },
-  { source: "/realisations/riad-zellige", destination: "/realisations/velora-hotel" },
-  { source: "/realisations/atlas-marche", destination: "/realisations/harvest-pantry" },
-  { source: "/realisations/ecole-al-amal", destination: "/realisations/brightpath-academy" },
-  { source: "/realisations/nord-logistique", destination: "/realisations/craftform-studio" },
-  { source: "/realisations/clinique-nahda", destination: "/realisations/clearview-clinic" },
-  { source: "/realisations/maison-noor", destination: "/realisations/lumina-interiors" },
+  { source: "/realisations/riad-zellige", destination: "/realisations" },
+  { source: "/realisations/atlas-marche", destination: "/realisations" },
+  { source: "/realisations/ecole-al-amal", destination: "/realisations" },
+  { source: "/realisations/nord-logistique", destination: "/realisations" },
+  { source: "/realisations/clinique-nahda", destination: "/realisations" },
+  { source: "/realisations/maison-noor", destination: "/realisations" },
+  { source: "/realisations/velora-hotel", destination: "/realisations" },
+  { source: "/realisations/harvest-pantry", destination: "/realisations" },
+  { source: "/realisations/brightpath-academy", destination: "/realisations" },
+  { source: "/realisations/craftform-studio", destination: "/realisations" },
+  { source: "/realisations/clearview-clinic", destination: "/realisations" },
+  { source: "/realisations/lumina-interiors", destination: "/realisations" },
 ];
 
 const nextConfig: NextConfig = {
@@ -37,7 +43,7 @@ const nextConfig: NextConfig = {
     return slugRedirects.flatMap(({ source, destination }) => [
       { source, destination, permanent: true },
       { source: `/en${source}`, destination: `/en${destination}`, permanent: true },
-      { source: `/ar${source}`, destination: `/ar${destination}`, permanent: true },
+      { source: `/ar${source}`, destination, permanent: true },
     ]);
   },
 };

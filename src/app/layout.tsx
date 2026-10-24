@@ -6,8 +6,13 @@ import { Toaster } from "sonner";
 import { site } from "@/config/site";
 import "./globals.css";
 
-const geist = Geist({ subsets: ["latin"], variable: "--font-geist" });
-const instrument = Instrument_Serif({ subsets: ["latin"], weight: "400", variable: "--font-instrument" });
+const geist = Geist({ subsets: ["latin"], variable: "--font-geist", display: "optional" });
+const instrument = Instrument_Serif({
+  subsets: ["latin"],
+  weight: "400",
+  variable: "--font-instrument",
+  display: "optional",
+});
 
 export const metadata: Metadata = {
   metadataBase: new URL(site.url),
@@ -17,8 +22,9 @@ export const metadata: Metadata = {
 
 export default async function RootLayout({ children }: { children: React.ReactNode }) {
   const headerList = await headers();
-  let locale = headerList.get("x-lyne-locale") || "fr";
-  if (!headerList.get("x-lyne-locale")) {
+  const headerLocale = headerList.get("x-next-intl-locale") || headerList.get("x-lyne-locale");
+  let locale = headerLocale || "fr";
+  if (!headerLocale) {
     try {
       locale = await getLocale();
     } catch {
@@ -27,7 +33,7 @@ export default async function RootLayout({ children }: { children: React.ReactNo
   }
 
   return (
-    <html lang={locale} dir={locale === "ar" ? "rtl" : "ltr"} className={`${geist.variable} ${instrument.variable}`}>
+    <html lang={locale === "en" ? "en" : "fr"} dir="ltr" className={`${geist.variable} ${instrument.variable}`}>
       <body className="min-h-screen bg-ink font-sans text-ivory antialiased">
         {children}
         <Toaster theme="dark" position="top-center" />

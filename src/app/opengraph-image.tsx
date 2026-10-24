@@ -42,9 +42,9 @@ export default function OpenGraphImage() {
               fontWeight: 700,
             }}
           >
-            L
+            M
           </div>
-          <div style={{ fontSize: 28, letterSpacing: 4 }}>{site.name}</div>
+          <div style={{ fontSize: 28, letterSpacing: 0 }}>{site.name}</div>
         </div>
         <div style={{ display: "flex", flexDirection: "column", gap: 18, maxWidth: 900 }}>
           <div style={{ fontSize: 64, lineHeight: 1.05 }}>{site.tagline}</div>
@@ -52,7 +52,7 @@ export default function OpenGraphImage() {
             Websites · SEO · Ads · Brand
           </div>
         </div>
-        <div style={{ fontSize: 20, color: "#d6ff3f" }}>lyne.studio</div>
+        <div style={{ fontSize: 20, color: "#d6ff3f" }}>{site.url.replace(/^https?:\/\//, "").replace(/\/$/, "")}</div>
       </div>
     ),
     size,

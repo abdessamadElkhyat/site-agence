@@ -14,6 +14,24 @@ export type ArticleView = Omit<Article, "blocks"> & {
   readingMinutes: number;
 };
 
+const DB_WAIT_MS = 2000;
+
+function withDeadline<T>(promise: Promise<T>, ms = DB_WAIT_MS): Promise<T> {
+  return new Promise((resolve, reject) => {
+    const timer = setTimeout(() => reject(new Error("db-timeout")), ms);
+    promise.then(
+      (value) => {
+        clearTimeout(timer);
+        resolve(value);
+      },
+      (error) => {
+        clearTimeout(timer);
+        reject(error);
+      },
+    );
+  });
+}
+
 function articleFromStatic(article: Article): ArticleView {
   const html = sanitizeContent(blocksToHtml(article.blocks));
   const { blocks: _blocks, ...rest } = article;
@@ -25,15 +43,17 @@ export async function getServices(locale: Locale) {
   const db = getPrisma();
   if (!db) return fallback;
   try {
-    const rows = await db.service.findMany({
-      where: { status: "PUBLISHED", locale },
-      orderBy: { sortOrder: "asc" },
-    });
-    const source = rows.length
-      ? rows
-      : await db.service.findMany({ where: { status: "PUBLISHED", locale: "fr" }, orderBy: { sortOrder: "asc" } });
-    if (!source.length) return fallback;
-    return source.map(mapService);
+    return await withDeadline((async () => {
+      const rows = await db.service.findMany({
+        where: { status: "PUBLISHED", locale },
+        orderBy: { sortOrder: "asc" },
+      });
+      const source = rows.length
+        ? rows
+        : await db.service.findMany({ where: { status: "PUBLISHED", locale: "fr" }, orderBy: { sortOrder: "asc" } });
+      if (!source.length) return fallback;
+      return source.map(mapService);
+    })());
   } catch {
     return fallback;
   }
@@ -49,15 +69,17 @@ export async function getProjects(locale: Locale) {
   const db = getPrisma();
   if (!db) return fallback;
   try {
-    const rows = await db.project.findMany({
-      where: { status: "PUBLISHED", locale },
-      orderBy: { sortOrder: "asc" },
-    });
-    const source = rows.length
-      ? rows
-      : await db.project.findMany({ where: { status: "PUBLISHED", locale: "fr" }, orderBy: { sortOrder: "asc" } });
-    if (!source.length) return fallback;
-    return source.map(mapProject);
+    return await withDeadline((async () => {
+      const rows = await db.project.findMany({
+        where: { status: "PUBLISHED", locale },
+        orderBy: { sortOrder: "asc" },
+      });
+      const source = rows.length
+        ? rows
+        : await db.project.findMany({ where: { status: "PUBLISHED", locale: "fr" }, orderBy: { sortOrder: "asc" } });
+      if (!source.length) return fallback;
+      return source.map(mapProject);
+    })());
   } catch {
     return fallback;
   }
@@ -73,6 +95,7 @@ export async function getArticles(locale: Locale): Promise<ArticleView[]> {
   const db = getPrisma();
   if (!db) return fallback;
   try {
+    return await withDeadline((async () => {
     const now = new Date();
     const rows = await db.article.findMany({
       where: {
@@ -92,7 +115,7 @@ export async function getArticles(locale: Locale): Promise<ArticleView[]> {
       coverAlt: row.coverAlt || row.title,
       category: row.category?.name || "Journal",
       tags: row.tags.map((tag) => tag.name),
-      author: row.author?.name || "LYNE",
+      author: row.author?.name || "Agence Mark",
       publishedAt: (row.publishedAt ?? row.createdAt).toISOString(),
       updatedAt: row.updatedAt.toISOString(),
       seoTitle: row.seoTitle || row.title,
@@ -106,6 +129,7 @@ export async function getArticles(locale: Locale): Promise<ArticleView[]> {
       html: sanitizeContent(row.contentHtml),
       readingMinutes: row.readingMinutes,
     }));
+    })());
   } catch {
     return fallback;
   }
@@ -120,18 +144,20 @@ export async function getTestimonials() {
   const db = getPrisma();
   if (!db) return staticTestimonials;
   try {
-    const rows = await db.testimonial.findMany({ where: { published: true }, orderBy: { sortOrder: "asc" } });
-    if (!rows.length) return staticTestimonials;
-    return rows.map(
-      (row): Testimonial => ({
-        name: row.name,
-        company: row.company,
-        role: row.role || "",
-        quote: row.quote,
-        photo: row.photoUrl || staticTestimonials[0].photo,
-        rating: row.rating || 5,
-      }),
-    );
+    return await withDeadline((async () => {
+      const rows = await db.testimonial.findMany({ where: { published: true }, orderBy: { sortOrder: "asc" } });
+      if (!rows.length) return staticTestimonials;
+      return rows.map(
+        (row): Testimonial => ({
+          name: row.name,
+          company: row.company,
+          role: row.role || "",
+          quote: row.quote,
+          photo: row.photoUrl || "",
+          rating: row.rating || 5,
+        }),
+      );
+    })());
   } catch {
     return staticTestimonials;
   }
@@ -141,17 +167,19 @@ export async function getTeam() {
   const db = getPrisma();
   if (!db) return staticTeam;
   try {
-    const rows = await db.teamMember.findMany({ where: { active: true }, orderBy: { sortOrder: "asc" } });
-    if (!rows.length) return staticTeam;
-    return rows.map(
-      (row): TeamMember => ({
-        name: row.name,
-        role: row.role,
-        bio: row.bio || "",
-        photo: row.photoUrl || staticTeam[0].photo,
-        linkedin: row.linkedin || undefined,
-      }),
-    );
+    return await withDeadline((async () => {
+      const rows = await db.teamMember.findMany({ where: { active: true }, orderBy: { sortOrder: "asc" } });
+      if (!rows.length) return staticTeam;
+      return rows.map(
+        (row): TeamMember => ({
+          name: row.name,
+          role: row.role,
+          bio: row.bio || "",
+          photo: row.photoUrl || staticTeam[0].photo,
+          linkedin: row.linkedin || undefined,
+        }),
+      );
+    })());
   } catch {
     return staticTeam;
   }

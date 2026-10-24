@@ -1,20 +1,5 @@
 @import "tailwindcss";
-
-@theme inline {
-  --color-ink: #09090b;
-  --color-ink-soft: #141416;
-  --color-ivory: #f4f1ea;
-  --color-muted: #a39e93;
-  --color-line: rgba(244, 241, 234, 0.14);
-  --color-accent: #d6ff3f;
-  --color-accent-ink: #14160a;
-  --color-brass: #e4d2b0;
-  --color-paper: #f6f3ec;
-  --color-paper-ink: #161513;
-  --color-paper-muted: #5e5a53;
-  --font-sans: var(--font-geist), ui-sans-serif, system-ui, sans-serif;
-  --font-serif: var(--font-instrument), "Times New Roman", serif;
-}
+@import "../styles/colors.css";
 
 html {
   scroll-behavior: smooth;
@@ -28,7 +13,7 @@ body {
 }
 
 ::selection {
-  background: #d6ff3f;
+  background: var(--color-accent);
   color: #14160a;
 }
 
@@ -112,7 +97,7 @@ body {
 }
 
 .prose-article blockquote {
-  border-inline-start: 2px solid #d6ff3f;
+  border-inline-start: 2px solid var(--color-accent);
   padding-inline-start: 1rem;
   font-family: var(--font-serif);
   font-size: 1.45rem;

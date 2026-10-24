@@ -12,8 +12,9 @@ import { pageMetadata } from "@/lib/seo";
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params;
   const safe = (hasLocale(routing.locales, locale) ? locale : "fr") as Locale;
+  const nav = await getTranslations({ locale: safe, namespace: "nav" });
   const t = await getTranslations({ locale: safe, namespace: "services" });
-  return pageMetadata({ locale: safe, path: "/services", title: t("title"), description: t("title") });
+  return pageMetadata({ locale: safe, path: "/services", title: nav("services"), description: t("title") });
 }
 
 export default async function ServicesPage({ params }: { params: Promise<{ locale: string }> }) {

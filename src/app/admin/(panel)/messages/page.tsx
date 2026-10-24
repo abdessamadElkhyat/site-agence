@@ -58,7 +58,7 @@ export default async function MessagesPage({ searchParams }: { searchParams: Pro
                   </p>
                 </div>
                 <a
-                  href={`mailto:${row.email}?subject=LYNE`}
+                  href={`mailto:${row.email}?subject=Agence%20Mark`}
                   className="inline-flex items-center gap-2 rounded-full border border-paper-ink/15 bg-white px-4 py-2 text-sm hover:bg-paper"
                 >
                   <Mail className="h-3.5 w-3.5" />

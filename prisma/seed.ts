@@ -9,7 +9,7 @@ import { readingMinutes } from "../src/lib/utils";
 import type { Locale } from "../src/i18n/routing";
 
 const prisma = new PrismaClient();
-const locales: Locale[] = ["fr", "en", "ar"];
+const locales: Locale[] = ["fr", "en"];
 
 const obsoleteArticleSlugs = [
   "comment-choisir-agence-marketing-digital-fes",
@@ -26,6 +26,12 @@ const obsoleteProjectSlugs = [
   "clinique-nahda",
   "maison-noor",
   "nord-logistique",
+  "velora-hotel",
+  "harvest-pantry",
+  "brightpath-academy",
+  "craftform-studio",
+  "clearview-clinic",
+  "lumina-interiors",
 ];
 
 async function main() {
@@ -34,7 +40,7 @@ async function main() {
   await prisma.adminUser.upsert({
     where: { email },
     update: {},
-    create: { email, name: "Admin LYNE", passwordHash: await hash(password, 12) },
+    create: { email, name: "Admin Agence Mark", passwordHash: await hash(password, 12) },
   });
 
   await prisma.article.deleteMany({ where: { slug: { in: obsoleteArticleSlugs } } });
@@ -62,8 +68,8 @@ async function main() {
   }
   const author = await prisma.author.upsert({
     where: { slug: "equipe-lyne" },
-    update: { name: "Équipe LYNE", role: "Studio", bio: "Les notes publiées par le studio." },
-    create: { name: "Équipe LYNE", slug: "equipe-lyne", role: "Studio", bio: "Les notes publiées par le studio." },
+    update: { name: "Équipe Agence Mark", role: "Agence", bio: "Les notes publiées par l'agence." },
+    create: { name: "Équipe Agence Mark", slug: "equipe-lyne", role: "Agence", bio: "Les notes publiées par l'agence." },
   });
 
   for (const locale of locales) {

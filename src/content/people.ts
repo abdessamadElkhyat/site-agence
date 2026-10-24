@@ -3,35 +3,7 @@ import type { TeamMember, Testimonial } from "@/types/content";
 const face = (id: string) =>
   `https://images.unsplash.com/${id}?auto=format&fit=crop&w=800&q=80`;
 
-export const staticTestimonials: Testimonial[] = [
-  {
-    name: "Nadia Bennani",
-    company: "Velora Hotel",
-    role: "Gérante",
-    quote:
-      "Les demandes sont devenues plus précises. Les gens ont déjà vu les chambres et savent ce qu'ils veulent réserver.",
-    photo: face("photo-1544005313-94ddf0286df2"),
-    rating: 5,
-  },
-  {
-    name: "Karim Tazi",
-    company: "Clearview Clinic",
-    role: "Directeur",
-    quote:
-      "On a arrêté de payer des clics qui ne menaient nulle part. Le secrétariat le sent dans la qualité des appels.",
-    photo: face("photo-1506794778202-cad84cf45f1d"),
-    rating: 5,
-  },
-  {
-    name: "Salma Idrissi",
-    company: "Lumina Interiors",
-    role: "Fondatrice",
-    quote:
-      "Le compte ressemble enfin à ce que l'on fabrique. Les visites du showroom ne partent plus de zéro.",
-    photo: face("photo-1580489944761-15a19d654956"),
-    rating: 5,
-  },
-];
+export const staticTestimonials: Testimonial[] = [];
 
 export const staticTeam: TeamMember[] = [
   {

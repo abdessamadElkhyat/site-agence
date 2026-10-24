@@ -29,7 +29,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
   return pageMetadata({
     locale: safe,
     path: `/blog/${slug}`,
-    title: article.seoTitle,
+    title: article.title,
     description: article.seoDescription,
     image: article.ogImage || article.cover,
     canonical: article.canonicalUrl,

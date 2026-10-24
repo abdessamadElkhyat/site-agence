@@ -11,7 +11,7 @@ export function readingMinutes(text: string) {
 }
 
 export function formatDate(date: Date | string, locale: string) {
-  return new Intl.DateTimeFormat(locale === "ar" ? "ar-MA" : locale === "en" ? "en-GB" : "fr-MA", {
+  return new Intl.DateTimeFormat(locale === "en" ? "en-GB" : "fr-FR", {
     day: "2-digit",
     month: "short",
     year: "numeric",

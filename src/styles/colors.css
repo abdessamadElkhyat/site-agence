@@ -1,0 +1,20 @@
+/*
+ * Couleurs du site. Le vert d'accent est celui des boutons et du logo.
+ * --color-accent-hover est le même vert, un peu adouci, pour le survol.
+ */
+@theme inline {
+  --color-ink: #09090b;
+  --color-ink-soft: #141416;
+  --color-ivory: #f4f1ea;
+  --color-muted: #a39e93;
+  --color-line: rgba(244, 241, 234, 0.14);
+  --color-accent: #d6ff3f;
+  --color-accent-hover: #e7ff8a;
+  --color-accent-ink: #14160a;
+  --color-brass: #e4d2b0;
+  --color-paper: #f6f3ec;
+  --color-paper-ink: #161513;
+  --color-paper-muted: #5e5a53;
+  --font-sans: var(--font-geist), ui-sans-serif, system-ui, sans-serif;
+  --font-serif: var(--font-instrument), "Times New Roman", serif;
+}

@@ -1,5 +1,5 @@
 import { hasLocale } from "next-intl";
-import { setRequestLocale } from "next-intl/server";
+import { getTranslations, setRequestLocale } from "next-intl/server";
 import { notFound } from "next/navigation";
 import { PageHero } from "@/components/shared/page-hero";
 import { Container } from "@/components/ui/container";
@@ -9,7 +9,13 @@ import { pageMetadata } from "@/lib/seo";
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params;
   const safe = (hasLocale(routing.locales, locale) ? locale : "fr") as Locale;
-  return pageMetadata({ locale: safe, path: "/politique-cookies", title: "Politique cookies", description: "Cookies essentiels et mesure d'audience sur le site LYNE." });
+  const meta = await getTranslations({ locale: safe, namespace: "meta" });
+  return pageMetadata({
+    locale: safe,
+    path: "/politique-cookies",
+    title: meta("cookies"),
+    description: safe === "en" ? "Essential cookies and audience measurement on the Agence Mark site." : "Cookies essentiels et mesure d'audience sur le site Agence Mark.",
+  });
 }
 
 export default async function Page({ params }: { params: Promise<{ locale: string }> }) {

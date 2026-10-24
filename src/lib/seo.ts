@@ -18,13 +18,13 @@ export function localizedPath(path: string, locale: Locale) {
 
 export function alternatesFor(path: string, locale: Locale): Metadata["alternates"] {
   const suffix = path === "/" ? "" : path;
-  const fr = suffix || "/";
+  const fr = suffix ? absoluteUrl(suffix) : `${site.url.replace(/\/$/, "")}/`;
+  const en = absoluteUrl(`/en${suffix}`);
   return {
-    canonical: locale === "fr" ? fr : `/${locale}${suffix}`,
+    canonical: locale === "fr" ? fr : en,
     languages: {
       fr,
-      en: `/en${suffix}`,
-      ar: `/ar${suffix}`,
+      en,
       "x-default": fr,
     },
   };
@@ -75,7 +75,7 @@ export function pageMetadata({
       description: ogDescription || description,
       url: pageUrl,
       siteName: site.name,
-      locale: locale === "ar" ? "ar" : locale === "en" ? "en_US" : "fr_FR",
+      locale: locale === "en" ? "en_US" : "fr_FR",
       type,
       images: [{ url: resolvedImage, width: 1200, height: 630, alt: ogTitle || title }],
       ...(type === "article"

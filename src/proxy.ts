@@ -62,6 +62,13 @@ export async function proxy(request: NextRequest) {
     return NextResponse.next({ request: { headers: requestHeaders } });
   }
 
+  if (pathname === "/ar" || pathname.startsWith("/ar/")) {
+    const url = request.nextUrl.clone();
+    const nextPath = pathname.replace(/^\/ar(?=\/|$)/, "") || "/";
+    url.pathname = nextPath;
+    return NextResponse.redirect(url, 308);
+  }
+
   const response = handleI18n(request);
   response.headers.set("x-lyne-locale", detectLocale(pathname));
   return response;
@@ -69,7 +76,7 @@ export async function proxy(request: NextRequest) {
 
 function detectLocale(pathname: string) {
   const segment = pathname.split("/")[1];
-  if (segment === "en" || segment === "ar") return segment;
+  if (segment === "en") return segment;
   return "fr";
 }
 

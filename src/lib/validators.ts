@@ -26,7 +26,7 @@ export const reservationSchema = z.object({
 
 export const newsletterSchema = z.object({
   email: z.string().trim().email().max(160),
-  locale: z.enum(["fr", "en", "ar"]).default("fr"),
+  locale: z.enum(["fr", "en"]).default("fr"),
 });
 
 const optionalText = (max: number) =>
@@ -55,5 +55,5 @@ export const articleSchema = z.object({
   ogTitle: optionalText(180),
   ogDescription: optionalText(320),
   ogImage: optionalText(1000),
-  locale: z.enum(["fr", "en", "ar"]).default("fr"),
+  locale: z.enum(["fr", "en"]).default("fr"),
 });

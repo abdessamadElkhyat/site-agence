@@ -6,7 +6,7 @@ import { Menu, X } from "lucide-react";
 import { Link, usePathname, useRouter } from "@/i18n/navigation";
 import { Logo } from "@/components/ui/logo";
 import { cn } from "@/lib/utils";
-import type { Locale } from "@/i18n/routing";
+import { routing, type Locale } from "@/i18n/routing";
 
 const links = [
   { href: "/services", key: "services" },
@@ -16,7 +16,7 @@ const links = [
   { href: "/contact", key: "contact" },
 ] as const;
 
-const locales: Locale[] = ["fr", "en", "ar"];
+const locales: Locale[] = [...routing.locales];
 
 export function Header() {
   const t = useTranslations("nav");
@@ -45,29 +45,34 @@ export function Header() {
   }, [open]);
 
   return (
+    <>
     <header
       className={cn(
-        "fixed inset-x-0 top-0 z-50 transition-colors duration-300",
-        scrolled || open ? "bg-ink/90 backdrop-blur-md" : "bg-transparent",
+        "fixed inset-x-0 top-0 z-[70]",
+        open ? "bg-ink" : scrolled ? "bg-ink/90 backdrop-blur-md" : "bg-transparent",
       )}
     >
       <div className="mx-auto flex h-16 max-w-[1440px] items-center justify-between px-5 md:h-20 md:px-8 lg:px-12">
-        <Link href="/" aria-label="LYNE">
+        <Link href="/" aria-label="agencemark">
           <Logo />
         </Link>
         <nav className="hidden items-center gap-8 lg:flex" aria-label="Principale">
-          {links.map((link) => (
-            <Link
-              key={link.href}
-              href={link.href}
-              className={cn(
-                "text-sm text-ivory/80 transition-colors hover:text-ivory",
-                pathname === link.href && "text-ivory",
-              )}
-            >
-              {t(link.key)}
-            </Link>
-          ))}
+          {links.map((link) => {
+            const current = pathname === link.href || pathname.startsWith(`${link.href}/`);
+            return (
+              <Link
+                key={link.href}
+                href={link.href}
+                aria-current={current ? "page" : undefined}
+                className={cn(
+                  "text-sm text-ivory/80 underline-offset-[6px] decoration-2 transition-colors hover:text-accent-hover",
+                  current && "text-accent underline",
+                )}
+              >
+                {t(link.key)}
+              </Link>
+            );
+          })}
         </nav>
         <div className="hidden items-center gap-5 lg:flex">
           <LocaleSwitch locale={locale} onChange={(next) => router.replace(pathname, { locale: next })} />
@@ -88,36 +93,64 @@ export function Header() {
           {open ? <X /> : <Menu />}
         </button>
       </div>
-      {open ? (
-        <div className="fixed inset-0 top-16 z-40 flex flex-col bg-ink px-6 pb-10 pt-8 lg:hidden">
-          <nav className="flex flex-col gap-2">
-            {links.map((link) => (
-              <Link key={link.href} href={link.href} className="font-serif text-4xl leading-tight text-ivory">
+    </header>
+    {open ? (
+      <div className="fixed inset-0 z-[65] overflow-y-auto bg-ink px-6 pt-24 pb-10 lg:hidden">
+        <nav className="border-t border-white/10">
+          {links.map((link) => {
+            const current = pathname === link.href || pathname.startsWith(`${link.href}/`);
+            return (
+              <Link
+                key={link.href}
+                href={link.href}
+                aria-current={current ? "page" : undefined}
+                className={cn(
+                  "flex items-center border-b border-white/10 py-4 font-serif text-[2rem] leading-none text-ivory underline-offset-8 decoration-2 transition-colors hover:text-accent-hover",
+                  current && "text-accent underline",
+                )}
+              >
                 {t(link.key)}
               </Link>
-            ))}
-          </nav>
-          <div className="mt-auto flex items-center justify-between">
-            <LocaleSwitch locale={locale} onChange={(next) => router.replace(pathname, { locale: next })} />
-            <Link href="/contact" className="rounded-full bg-accent px-4 py-2 text-sm font-medium text-accent-ink">
-              {t("cta")}
-            </Link>
-          </div>
+            );
+          })}
+        </nav>
+        <div className="mt-8">
+          <LocaleSwitch locale={locale} prominent onChange={(next) => router.replace(pathname, { locale: next })} />
         </div>
-      ) : null}
-    </header>
+        <Link
+          href="/contact"
+          className="mt-6 flex h-12 items-center justify-center rounded-full bg-accent text-sm font-medium text-accent-ink"
+        >
+          {t("cta")}
+        </Link>
+      </div>
+    ) : null}
+    </>
   );
 }
 
-function LocaleSwitch({ locale, onChange }: { locale: Locale; onChange: (locale: Locale) => void }) {
+function LocaleSwitch({
+  locale,
+  onChange,
+  prominent = false,
+}: {
+  locale: Locale;
+  onChange: (locale: Locale) => void;
+  prominent?: boolean;
+}) {
   return (
-    <div className="flex items-center gap-2 text-xs tracking-[0.14em]">
+    <div className={cn("flex items-center", prominent ? "gap-3 text-sm" : "gap-2 text-xs tracking-[0.14em]")}>
       {locales.map((item) => (
         <button
           key={item}
           type="button"
           onClick={() => onChange(item)}
-          className={cn("uppercase", item === locale ? "text-accent" : "text-muted")}
+          className={cn(
+            "uppercase transition-colors hover:text-accent-hover",
+            item === locale ? "text-accent" : prominent ? "text-ivory/70" : "text-muted",
+            prominent && "rounded-full border px-3 py-1.5",
+            prominent && item === locale ? "border-accent" : prominent && "border-white/15",
+          )}
           lang={item}
         >
           {item}

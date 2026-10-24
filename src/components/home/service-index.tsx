@@ -26,7 +26,7 @@ export function ServiceIndex({ services }: { services: Service[] }) {
                 aria-expanded={selected}
               >
                 <span className="w-8 text-xs text-paper-muted">0{index + 1}</span>
-                <span className={`font-serif text-2xl md:text-4xl ${selected ? "" : "text-paper-ink/45"}`}>{service.name}</span>
+                <span className={`font-serif text-2xl md:text-4xl ${selected ? "text-paper-ink" : "text-paper-muted"}`}>{service.name}</span>
               </button>
               {selected ? <p className="pb-5 ps-12 text-sm leading-6 text-paper-muted md:hidden">{service.summary}</p> : null}
             </li>

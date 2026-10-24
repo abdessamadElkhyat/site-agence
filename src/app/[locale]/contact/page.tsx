@@ -2,6 +2,7 @@ import { hasLocale } from "next-intl";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import { notFound } from "next/navigation";
 import { ContactPanel } from "@/components/forms/contact-panel";
+import { SocialLinks } from "@/components/layout/social-links";
 import { PageHero } from "@/components/shared/page-hero";
 import { Container } from "@/components/ui/container";
 import { site } from "@/config/site";
@@ -12,8 +13,9 @@ import { pageMetadata } from "@/lib/seo";
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params;
   const safe = (hasLocale(routing.locales, locale) ? locale : "fr") as Locale;
+  const nav = await getTranslations({ locale: safe, namespace: "nav" });
   const t = await getTranslations({ locale: safe, namespace: "contact" });
-  return pageMetadata({ locale: safe, path: "/contact", title: t("title"), description: t("text") });
+  return pageMetadata({ locale: safe, path: "/contact", title: nav("contact"), description: t("text") });
 }
 
 export default async function ContactPage({ params }: { params: Promise<{ locale: string }> }) {
@@ -35,8 +37,7 @@ export default async function ContactPage({ params }: { params: Promise<{ locale
             <p>
               <a href={`mailto:${site.email}`}>{site.email}</a>
             </p>
-            <p>{site.hours}</p>
-            <p className="text-paper-muted">Remote-first · Worldwide</p>
+            <SocialLinks itemClassName="border-paper-ink/15 hover:border-paper-ink" />
             <a className="inline-block underline" href={`https://wa.me/${site.whatsapp}`}>
               {t("whatsapp")}
             </a>

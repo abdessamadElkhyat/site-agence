@@ -22,7 +22,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
   return pageMetadata({
     locale: safe,
     path: `/realisations/${slug}`,
-    title: project.seoTitle,
+    title: project.title,
     description: project.seoDescription,
     image: project.cover,
   });

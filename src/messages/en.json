@@ -10,27 +10,27 @@
     "close": "Close menu"
   },
   "hero": {
-    "eyebrow": "Digital marketing studio · International",
+    "eyebrow": "Agence Mark · Digital marketing",
     "title": "Websites, campaigns and brands that bring in",
     "emphasis": "clients",
-    "subtitle": "LYNE helps companies and brands become the ones people choose: websites, SEO, advertising and content, with clear follow-up and numbers you can read.",
+    "subtitle": "Agence Mark helps companies and brands become the ones people choose: websites, SEO, advertising and content, with clear follow-up and numbers you can read.",
     "primary": "Let's talk about your project",
     "secondary": "Explore the services",
     "scroll": "Scroll"
   },
   "sections": {
     "workEyebrow": "Selected work",
-    "workTitle": "Concrete projects, not agency mockups.",
+    "workTitle": "Concrete projects, not agency mockups",
     "workAll": "All work",
     "servicesEyebrow": "What we do",
-    "servicesTitle": "One studio, eight levers.",
+    "servicesTitle": "One studio, eight levers",
     "servicesText": "Every engagement starts from a business goal. Website, advertising and content work together.",
     "methodEyebrow": "Method",
-    "methodTitle": "Four steps, no theatre.",
+    "methodTitle": "Four steps, no theatre",
     "journalEyebrow": "Journal",
-    "journalTitle": "Guides to decide more clearly.",
+    "journalTitle": "Guides to decide more clearly",
     "journalAll": "Read the journal",
-    "closingTitle": "Tell us what you want to grow.",
+    "closingTitle": "Tell us what you want to grow",
     "closingText": "A 30-minute call is enough to see if we are the right studio. Reply within one business day.",
     "viewProject": "View project",
     "read": "Read"
@@ -42,7 +42,7 @@
     "4": { "title": "Measure", "text": "Traffic, enquiries, sales. We reinforce what works and stop what does not help." }
   },
   "footer": {
-    "blurb": "An international digital marketing studio. Websites, acquisition and brands for companies that want to grow anywhere.",
+    "blurb": "Agence Mark. Websites, acquisition and brands for companies that want to be chosen.",
     "navigate": "Navigate",
     "services": "Services",
     "contact": "Contact",
@@ -58,7 +58,7 @@
   },
   "contact": {
     "eyebrow": "Contact",
-    "title": "Let's talk about the next step.",
+    "title": "Let's talk about the next step",
     "text": "Describe the project, or book a slot. We reply within one business day.",
     "messageTab": "Write",
     "bookingTab": "Book a call",
@@ -90,12 +90,12 @@
   },
   "about": {
     "eyebrow": "The studio",
-    "title": "An international digital atelier, run like a serious house.",
-    "text": "LYNE started from a simple idea: businesses deserve a high standard everywhere, with a team that speaks clearly and ships."
+    "title": "An international digital atelier, run like a serious house",
+    "text": "Agence Mark started from a simple idea: businesses deserve a high standard everywhere, with a team that speaks clearly and ships."
   },
   "blog": {
     "eyebrow": "Journal",
-    "title": "Decide with markers, not with promises.",
+    "title": "Decide with markers, not with promises",
     "reading": "min read",
     "related": "Also read",
     "relatedTitle": "Keep reading",
@@ -108,7 +108,7 @@
   },
   "work": {
     "eyebrow": "Work",
-    "title": "What we have already shipped.",
+    "title": "What we have already shipped",
     "empty": "No project in this category.",
     "client": "Client",
     "stack": "Stack",
@@ -118,7 +118,7 @@
   },
   "services": {
     "eyebrow": "Services",
-    "title": "Choose the lever, not a catalogue.",
+    "title": "Choose the lever, not a catalogue",
     "problem": "The issue",
     "solution": "Our answer",
     "benefits": "What you gain",
@@ -132,7 +132,13 @@
     "text": "We measure traffic only if you accept. Essential cookies keep your choice.",
     "accept": "Accept",
     "refuse": "Refuse",
-    "more": "Learn more"
+    "more": "Cookie policy"
+  },
+  "meta": {
+    "legal": "Legal notice",
+    "privacy": "Privacy",
+    "cookies": "Cookie policy",
+    "notFound": "Page not found"
   },
   "common": {
     "home": "Home",
