@@ -18,7 +18,7 @@ export function localizedPath(path: string, locale: Locale) {
 
 export function alternatesFor(path: string, locale: Locale): Metadata["alternates"] {
   const suffix = path === "/" ? "" : path;
-  const fr = suffix ? absoluteUrl(suffix) : `${site.url.replace(/\/$/, "")}/`;
+  const fr = suffix ? absoluteUrl(suffix) : new URL(site.url).href;
   const en = absoluteUrl(`/en${suffix}`);
   return {
     canonical: locale === "fr" ? fr : en,

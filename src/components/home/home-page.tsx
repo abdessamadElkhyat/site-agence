@@ -35,9 +35,9 @@ export async function HomePage({
           <div className="glow-drift absolute -start-24 top-16 h-[28rem] w-[28rem] rounded-full bg-accent/15 blur-3xl" />
           <div className="absolute end-0 top-0 h-full w-1/2 bg-[radial-gradient(ellipse_at_top_right,rgba(214,255,63,0.14),transparent_55%)]" />
         </div>
-        <Container className="relative grid min-h-[calc(100svh-8rem)] content-end pb-10">
+        <Container className="relative grid min-h-[calc(100svh-8rem)] content-start pb-10 pt-[6vh]">
           <p className="text-xs tracking-[0.22em] text-brass uppercase">{t("eyebrow")}</p>
-          <h1 className="mt-5 max-w-5xl font-serif text-[clamp(2.7rem,7.4vw,6.6rem)] leading-[0.92] tracking-[-0.03em]">
+          <h1 className="mt-5 min-h-[3.7em] max-w-5xl font-serif text-[clamp(2.7rem,7.4vw,6.6rem)] leading-[0.92] tracking-[-0.03em]">
             {t("title")} <em className="text-accent not-italic">{t("emphasis")}</em>
           </h1>
           <div className="mt-8 grid items-end gap-8 md:grid-cols-[1.2fr_0.8fr]">

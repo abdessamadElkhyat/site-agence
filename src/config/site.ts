@@ -2,11 +2,19 @@
  * Identité studio. Remplacez email / téléphone / URL par vos valeurs finales.
  * Studio international — pas de siège ni de ville mis en avant.
  */
+const PUBLIC_SITE_URL = "https://www.agencemark.com";
+
+function siteUrl() {
+  const configured = process.env.NEXT_PUBLIC_SITE_URL?.replace(/\/$/, "");
+  if (configured && /^https:\/\/(www\.)?agencemark\.com$/.test(configured)) return configured;
+  return PUBLIC_SITE_URL;
+}
+
 export const site = {
   name: "agencemark",
   legalName: "Agence Mark",
   tagline: "Agence de marketing digital",
-  url: process.env.NEXT_PUBLIC_SITE_URL || "https://www.agencemark.com",
+  url: siteUrl(),
   email: "Info@agencemark.com",
   phone: "+33 6 36 22 90 08",
   phoneHref: "tel:+33636229008",
